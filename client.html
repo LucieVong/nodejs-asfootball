@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta http-equiv="Content-Type" context="text/html; charset=UTF-8" />
+    <title>Formulaire client</title>
+</head>
+
+<body>
+<h1>Formulaire client</h1>
+<form action="http:/localhost:8080/client" method="post">
+<fieldset>
+    <div>
+
+        <p>Nom: <input type="text" name="nom" id="nom"></p>
+        <p>Email: <input type="email" name="email" id="email"></p>
+        <p>Mot de passe: <input type="password" name="pass" id="pass"></p>
+
+        <input type="submit" value="Envoyer" name="submit" id="send">
+
+    </div>
+</fieldset>
+
+<script>
+
+$('#send').click(function(){ 
+var nom=$('#nom').val();
+var email=$('#email').val();
+var pass=$('#pass').val();
+$.ajax({ 
+      type: "POST",
+      contentType: 'application/json; charset=utf-8',
+      url: "http://localhost:8080/client?nom="+nom+"&email="+email+"&pass="+pass,
+     success: function(data){
+          //client modifié
+         alert("Client enregistré");
+      }
+ });
+});
+
+</script>
+
+<script src="index.js?v=1"></script>
+</body>
+</html>
